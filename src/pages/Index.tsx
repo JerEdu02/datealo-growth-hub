@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { CheckCircle, BarChart3, Users, TrendingUp, Target, Clock, Lightbulb } from "lucide-react";
+import { CheckCircle, BarChart3, Users, TrendingUp, Target, Clock, Lightbulb, CreditCard, GraduationCap, ShoppingCart } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -342,40 +342,153 @@ const Index = () => {
               <div className="text-xs text-green-500">↑ +3% vs mes anterior</div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Case Studies Section */}
+      <section className="py-20 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Casos prácticos: cómo ayudamos a startups como la tuya
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Descubre cómo hemos transformado datos en crecimiento real para founders como tú
+            </p>
+          </div>
           
-          <div className="mt-12 bg-white p-8 rounded-xl shadow-lg">
-            <h3 className="text-2xl font-semibold text-gray-900 mb-6 text-center">
-              Casos de uso por industria
-            </h3>
-            <div className="grid md:grid-cols-3 gap-8">
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-3">SaaS B2B</h4>
-                <ul className="text-gray-600 text-sm space-y-1">
-                  <li>• MRR y churn rate</li>
-                  <li>• Feature adoption</li>
-                  <li>• Sales funnel efficiency</li>
-                  <li>• Customer health score</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-3">E-commerce</h4>
-                <ul className="text-gray-600 text-sm space-y-1">
-                  <li>• Conversion rate por canal</li>
-                  <li>• Average order value</li>
-                  <li>• Repeat purchase rate</li>
-                  <li>• Abandono de carrito</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-3">Marketplace</h4>
-                <ul className="text-gray-600 text-sm space-y-1">
-                  <li>• Take rate y GMV</li>
-                  <li>• Liquidity ratio</li>
-                  <li>• Supply/demand balance</li>
-                  <li>• Time to first transaction</li>
-                </ul>
-              </div>
-            </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Track&Flow - SaaS */}
+            <Card className="border-2 border-gray-100 hover:border-blue-200 transition-colors">
+              <CardContent className="p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                    <BarChart3 className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900">Track&Flow</h3>
+                    <p className="text-sm text-gray-500">SaaS - Project Management</p>
+                  </div>
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="bg-red-50 p-4 rounded-lg">
+                    <h4 className="font-semibold text-red-800 mb-2">Problema inicial:</h4>
+                    <p className="text-red-700 text-sm">No entendían por qué los usuarios se registraban pero no activaban su cuenta.</p>
+                  </div>
+                  
+                  <div className="bg-blue-50 p-4 rounded-lg">
+                    <h4 className="font-semibold text-blue-800 mb-2">Qué hicimos:</h4>
+                    <p className="text-blue-700 text-sm">Mapeamos el funnel de activación completo e identificamos los puntos de fricción críticos.</p>
+                  </div>
+                  
+                  <div className="bg-green-50 p-4 rounded-lg">
+                    <h4 className="font-semibold text-green-800 mb-2">Resultado:</h4>
+                    <p className="text-green-700 text-sm font-medium">✅ Duplicó tasa de activación del 12% al 24%</p>
+                    <p className="text-green-700 text-sm font-medium">✅ Redujo CAC en 40%</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* ProntoCredito - Fintech */}
+            <Card className="border-2 border-gray-100 hover:border-blue-200 transition-colors">
+              <CardContent className="p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                    <CreditCard className="w-6 h-6 text-green-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900">ProntoCredito</h3>
+                    <p className="text-sm text-gray-500">Fintech - Microcréditos</p>
+                  </div>
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="bg-red-50 p-4 rounded-lg">
+                    <h4 className="font-semibold text-red-800 mb-2">Problema inicial:</h4>
+                    <p className="text-red-700 text-sm">Sin claridad en su funnel de conversión y ROI por canal de marketing.</p>
+                  </div>
+                  
+                  <div className="bg-blue-50 p-4 rounded-lg">
+                    <h4 className="font-semibold text-blue-800 mb-2">Qué hicimos:</h4>
+                    <p className="text-blue-700 text-sm">Creamos dashboards de atribución y análisis de performance por canal.</p>
+                  </div>
+                  
+                  <div className="bg-green-50 p-4 rounded-lg">
+                    <h4 className="font-semibold text-green-800 mb-2">Resultado:</h4>
+                    <p className="text-green-700 text-sm font-medium">✅ Aumentó ROI en marketing 70%</p>
+                    <p className="text-green-700 text-sm font-medium">✅ Optimizó presupuesto entre canales</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Mentory - Edtech */}
+            <Card className="border-2 border-gray-100 hover:border-blue-200 transition-colors">
+              <CardContent className="p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
+                    <GraduationCap className="w-6 h-6 text-purple-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900">Mentory</h3>
+                    <p className="text-sm text-gray-500">Edtech - Cursos Online</p>
+                  </div>
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="bg-red-50 p-4 rounded-lg">
+                    <h4 className="font-semibold text-red-800 mb-2">Problema inicial:</h4>
+                    <p className="text-red-700 text-sm">Alto abandono en cursos sin saber en qué momento exacto perdían estudiantes.</p>
+                  </div>
+                  
+                  <div className="bg-blue-50 p-4 rounded-lg">
+                    <h4 className="font-semibold text-blue-808 mb-2">Qué hicimos:</h4>
+                    <p className="text-blue-700 text-sm">Implementamos tracking de engagement por lección y alertas de riesgo de abandono.</p>
+                  </div>
+                  
+                  <div className="bg-green-50 p-4 rounded-lg">
+                    <h4 className="font-semibold text-green-800 mb-2">Resultado:</h4>
+                    <p className="text-green-700 text-sm font-medium">✅ Completion rate pasó de 37% a 65%</p>
+                    <p className="text-green-700 text-sm font-medium">✅ Redujo churn estudiantil en 45%</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* TiendaWow - E-commerce */}
+            <Card className="border-2 border-gray-100 hover:border-blue-200 transition-colors">
+              <CardContent className="p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center">
+                    <ShoppingCart className="w-6 h-6 text-orange-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900">TiendaWow</h3>
+                    <p className="text-sm text-gray-500">E-commerce - Retail Online</p>
+                  </div>
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="bg-red-50 p-4 rounded-lg">
+                    <h4 className="font-semibold text-red-800 mb-2">Problema inicial:</h4>
+                    <p className="text-red-700 text-sm">Sin métricas de recompra ni claridad sobre el comportamiento post-compra.</p>
+                  </div>
+                  
+                  <div className="bg-blue-50 p-4 rounded-lg">
+                    <h4 className="font-semibold text-blue-800 mb-2">Qué hicimos:</h4>
+                    <p className="text-blue-700 text-sm">Desarrollamos análisis de cohortes y sistemas de retención personalizada.</p>
+                  </div>
+                  
+                  <div className="bg-green-50 p-4 rounded-lg">
+                    <h4 className="font-semibold text-green-800 mb-2">Resultado:</h4>
+                    <p className="text-green-700 text-sm font-medium">✅ Duplicó tasa de recompra a 30 días</p>
+                    <p className="text-green-700 text-sm font-medium">✅ Aumentó LTV promedio en 85%</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
