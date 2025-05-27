@@ -1,10 +1,9 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle, BarChart3, Users, TrendingUp, Target, Clock, Lightbulb, CreditCard, GraduationCap, ShoppingCart } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
@@ -15,14 +14,40 @@ const Index = () => {
     problem: ""
   });
   const { toast } = useToast();
+  const formSectionRef = useRef<HTMLDivElement>(null);
+  const caseStudiesSectionRef = useRef<HTMLDivElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const GOOGLE_FORM_ACTION_URL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdbxzQweSGcFc0sTQBQ7NOT-fpuIVuGu4xKg0S7etD_Yr77YQ/formResponse";
+  const ENTRY_NAME = "entry.477159807"; // Reemplaza con el entry real de tu campo nombre
+  const ENTRY_EMAIL = "entry.852447656"; // Reemplaza con el entry real de tu campo email
+  const ENTRY_STARTUP = "entry.739000005"; // Reemplaza con el entry real de tu campo startup
+  const ENTRY_PROBLEM = "entry.60628438"; // Reemplaza con el entry real de tu campo problema
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "¡Gracias por tu interés!",
-      description: "Nos pondremos en contacto contigo pronto para agendar tu diagnóstico gratuito.",
-    });
-    setFormData({ name: "", email: "", startup: "", problem: "" });
+    const formDataGoogle = new FormData();
+    formDataGoogle.append(ENTRY_NAME, formData.name);
+    formDataGoogle.append(ENTRY_EMAIL, formData.email);
+    formDataGoogle.append(ENTRY_STARTUP, formData.startup);
+    formDataGoogle.append(ENTRY_PROBLEM, formData.problem);
+    try {
+      await fetch(GOOGLE_FORM_ACTION_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: formDataGoogle,
+      });
+      toast({
+        title: "¡Gracias por tu interés!",
+        description: "Nos pondremos en contacto contigo pronto para agendar tu diagnóstico gratuito.",
+      });
+      setFormData({ name: "", email: "", startup: "", problem: "" });
+    } catch (error) {
+      toast({
+        title: "Error al enviar",
+        description: "Hubo un problema al enviar tus datos. Intenta de nuevo más tarde.",
+        variant: "destructive",
+      });
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -31,6 +56,14 @@ const Index = () => {
       [e.target.name]: e.target.value
     });
   };
+
+  function handlerClick() {
+    formSectionRef.current?.scrollIntoView({ behavior: "smooth" });
+  }
+
+  function handleCaseStudiesClick() {
+    caseStudiesSectionRef.current?.scrollIntoView({ behavior: "smooth" });
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -46,10 +79,10 @@ const Index = () => {
                 Análisis de datos y dashboards personalizados para startups que quieren tomar decisiones de negocio con claridad, sin necesidad de un equipo técnico.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-lg px-8 py-4">
+                <Button onClick={handlerClick} size="lg" className="bg-blue-600 hover:bg-blue-700 text-lg px-8 py-4">
                   Diagnóstico Gratuito
                 </Button>
-                <Button variant="outline" size="lg" className="text-lg px-8 py-4">
+                <Button onClick={handleCaseStudiesClick} variant="outline" size="lg" className="text-lg px-8 py-4">
                   Ver Casos de Uso
                 </Button>
               </div>
@@ -346,7 +379,7 @@ const Index = () => {
       </section>
 
       {/* Case Studies Section */}
-      <section className="py-20 px-4 bg-white">
+      <section ref={caseStudiesSectionRef} className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -494,7 +527,7 @@ const Index = () => {
       </section>
 
       {/* Contact Form */}
-      <section className="py-20 px-4 bg-blue-600">
+      <section ref={formSectionRef} className="py-20 px-4 bg-blue-600">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-white mb-4">
